@@ -1,0 +1,1034 @@
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+   var data = [
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "1",
+    name: "Name1",
+    color: "Color1"
+},
+{
+    id: "2",
+    name: "Name2",
+    color: "Color2"
+},
+{
+    id: "1",
+    name: "Name3",
+    color: "Color3"
+},
+{
+    id: "7",
+    name: "Name4",
+    color: "Color4"
+},
+{
+    id: "7",
+    name: "Name5",
+    color: "Color"
+},
+{
+    id: "5",
+    name: "Name3",
+    color: "Color3"
+},
+];
+
+var groupId = [];
+var maxId = 0;
+for (var i = 0; i < data.length; i++){
+    var item = data[i];
+    var id_study = item.name;
+    num = id_study.replace(/^\D+/g, "");
+    if (!groupId[num]){
+        groupId[num] = [];
+    }
+    
+    groupId[num].push({name: item.name, color:item.color});
+    
+    
+    if (maxId < num){
+        maxId = num;
+    }
+    console.log(maxId);
+}
+
+//Make an SVG Container
+ var svgContainer = d3.select("body").append("svg").attr("width", 200).attr("height", 200);
+
+for (var i = 1; i <= maxId; i++){
+
+    console.log("length of groupId is " + groupId[i].length);
+    console.log("Id is " + i);
+    for (var j = 0; j < groupId[i].length; j++){
+         console.log("name is " + groupId[i][j].name + " color is " + groupId[i][j].color);
+    }
+    console.log("===========================");
+ //Draw the Rectangle
+ var rectangle = svgContainer
+                 .append("rect")
+                 .attr("x", i*10)
+                 .attr("y", i)
+                 .attr("width", 5)
+                 .attr("height", groupId[i].length);
+}
+</script>

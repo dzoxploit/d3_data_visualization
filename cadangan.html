@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<html>    
+  <head>    
+     <title>Data Visualization</title>    
+     <meta http-equiv="X-UA-Compatible" content="IE=9">    
+     <link href="assets/style.css" type="text/css" />    
+         
+  </head>    
+  <body>    
+    <div class="container">
+      <h1>Data Visualization Crossfilter</h1>
+      
+      <div id="chart-ring-year" style="width:300px; height:330px">
+        <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
+          <a href="javascript:yearRingChart.filterAll();dc.redrawAll();">reset</a>
+        </div>
+      </div>
+      <div id="chart-hist-spend" style="width:500px; height:330px">
+        <div class="reset" style="visibility: hidden;">range: <span class="filter"></span>
+          <a href="javascript:spendHistChart.filterAll();dc.redrawAll();">reset</a>
+        </div>
+      </div>
+      <div id="chart-row-spenders">
+        <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
+          <a href="javascript:spenderRowChart.filterAll();dc.redrawAll();">reset</a>
+        </div>
+      </div>
+      <!-- not sure why all these styles necessary, not the point of this -->
+      <div style="clear: both; margin: 30px; float: left">
+        <div id="table"></div>
+        <div id="download-type" style="clear: both; float: left">
+          <div><label><input type=radio name="operation" value="raw" checked="true">&nbsp;all data</label></div>
+          <div><label><input type=radio name="operation" value="table">&nbsp;table data</label></div>
+        </div>
+        <div style="float: left">
+          <button class="btn" id="download">download</button>
+        </div>
+      </div>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.10/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.7/crossfilter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.0-dev/dc.js"></script>    
+    <script type="text/javascript">    
+         var yearRingChart   = dc.pieChart("#chart-ring-year"),
+            spendHistChart  = dc.barChart("#chart-hist-spend"),
+            spenderRowChart = dc.rowChart("#chart-row-spenders");
+         var table = dc.dataTable('#table');
+      var groupId = {};
+      var maxId = 0;
+      d3.csv("data/mock.csv", function(d) {
+        var groupId = [];
+        var maxId = 0;
+        for (var i = 0; i < d.length; i++){
+            var item = d[i];
+            var id_study = item.study_id;
+            num = id_study.replace(/^\D+/g, "");
+            if (!groupId[num]){
+                groupId[num] = [];
+            }
+            
+            groupId[num].push({study_id: item.study_id, participant_name:item.participant_name});
+            
+            
+            if (maxId < num){
+                maxId = num;
+            };
+        }
+
+        for (var i = 1; i <= maxId; i++){
+
+            console.log("length of groupId is " + groupId[i].length);
+            console.log("Id is " + i);
+            for (var j = 0; j < groupId[i].length; j++){
+                console.log("name is " + groupId[i][j].study_id + " color is " + groupId[i][j].participant_name);
+            }
+            console.log("===========================");
+            var ndx = crossfilter(groupId[i]),
+                tahunDim  = ndx.dimension(function(d) {return +d.study_id;}),
+                spendPerJumlah =  tahunDim.group().reduceSum(function(d) {return +d.length;});
+               
+                var colorScale = d3.scale.ordinal()
+                              .domain(["Study1", "Study2", "Study3", "Study4", "Study5"])
+                              .range(["#fc8d59", "#998ec3", "#7fbf7b","7b94bf","#b863c9"]);
+          
+                yearRingChart
+                  .width(300)
+                  .height(300)
+                  .dimension(tahunDim)
+                  .group(spendPerJumlah)
+                  .innerRadius(50)
+                  .colors(colorScale)
+                  .controlsUseVisibility(true);
+        }
+      });
+      dc.renderAll();
+    </script>      
+  </body>    
+</html>   
