@@ -98,7 +98,10 @@ d3.csv("data/mock.csv", function(d) {
                     .sort(function(a, b){ return d3.ascending(a.values, b.values); })
         return documentCount;
       }
-      console
+      console.log(ReadDataStudy2Count);
+      console.log(ReadDataStudyCount);
+      console.log(ReadDataQuizCompletionCount);
+      console.log(ReadDataDocumentCount);
       var yearRingChart   = dc.pieChart("#chart-ring-year"),
               spendHistChart  = dc.barChart("#chart-hist-spend"),
               spenderRowChart = dc.rowChart("#chart-row-spenders");
