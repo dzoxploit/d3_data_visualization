@@ -1,48 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
 <html>    
   <head>    
      <title>Data Visualization</title>    
      <meta http-equiv="X-UA-Compatible" content="IE=9">    
-     <link href="assets/style.css" type="text/css" />    
+     <style>
+      .pie {
+margin: 20px;
+}
+
+
+
+.legend {
+float: left;
+font-family: "Verdana";
+font-size: .7em;
+}
+
+.pie text {
+font-family: "Verdana";
+fill: #000;
+}
+
+.pie .name-text{
+font-size: .8em;
+}
+
+.pie .value-text{
+font-size: 3em;
+}
+.bar{
+	fill: #28C587;
+}
+/* Lighten the axis lines */
+#x-axis path,#y-axis line, #y-axis path{
+	stroke: #666;
+}
+/* Remove the tick marks on the x-axis */
+#x-axis .tick line{
+	visibility: hidden;
+}
+
+text{
+	fill: #666;
+	font-size: 12px;
+}
+
+#x-axis text {
+	font-weight: 600;
+}
+  </style>   
          
   </head>    
   <body>    
     <div class="container">
-      <h1>Data Visualization Crossfilter</h1>
-      
-      <div id="chart-ring-year" style="width:300px; height:330px">
-        <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
-          <a href="javascript:yearRingChart.filterAll();dc.redrawAll();">reset</a>
-        </div>
-      </div>
-      <div id="chart-hist-spend" style="width:500px; height:330px">
-        <div class="reset" style="visibility: hidden;">range: <span class="filter"></span>
-          <a href="javascript:spendHistChart.filterAll();dc.redrawAll();">reset</a>
-        </div>
-      </div>
-      <div id="chart-row-spenders">
-        <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
-          <a href="javascript:spenderRowChart.filterAll();dc.redrawAll();">reset</a>
-        </div>
-      </div>
-      <!-- not sure why all these styles necessary, not the point of this -->
-      <div style="clear: both; margin: 30px; float: left">
-        <div id="table"></div>
-        <div id="download-type" style="clear: both; float: left">
-          <div><label><input type=radio name="operation" value="raw" checked="true">&nbsp;all data</label></div>
-          <div><label><input type=radio name="operation" value="table">&nbsp;table data</label></div>
-        </div>
-        <div style="float: left">
-          <button class="btn" id="download">download</button>
-        </div>
-      </div>   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.10/d3.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.7/crossfilter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.0-dev/dc.js"></script>    
+      <h1>Persentase study</h1>
+      <div id="chart"></div>
+    </div>
+    <br/>
+    <div class="container">
+      <h1>Quiz Completion Analytics</h1>
+      <svg id="chart2"></svg>
+    </div>   
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript">    
-          var yearRingChart   = dc.pieChart("#chart-ring-year");
-// use static or load via d3.csv("spendData.csv", function(error, spendData) {/* do stuff */});
-
 var groupId = {};
 var maxId = 0;
 d3.csv("data/mock.csv", function(d) {
@@ -98,121 +117,225 @@ d3.csv("data/mock.csv", function(d) {
                     .sort(function(a, b){ return d3.ascending(a.values, b.values); })
         return documentCount;
       }
-      console.log(ReadDataStudy2Count);
-      console.log(ReadDataStudyCount);
-      console.log(ReadDataQuizCompletionCount);
-      console.log(ReadDataDocumentCount);
-      var yearRingChart   = dc.pieChart("#chart-ring-year"),
-              spendHistChart  = dc.barChart("#chart-hist-spend"),
-              spenderRowChart = dc.rowChart("#chart-row-spenders");
-          var table = dc.dataTable('#table');
-          // use static or load via d3.csv("spendData.csv", function(error, spendData) {/* do stuff */});
-          var spendData = [
-              {Name: 'Jeff', Emails: '1400', Year: 2001},
-              {Name: 'James', Emails: '1000', Year: 2001},
-              {Name: 'Kay', Emails: '4000', Year: 2001},
-              {Name: 'Jeff', Emails: '7000', Year: 2000},
-              {Name: 'James', Emails: '2000', Year: 2000},
-              {Name: 'James', Emails: '5000', Year: 1999},
-              {Name: 'Kay', Emails: '3000', Year: 1999},
-              {Name: 'Richard', Emails: '6000', Year: 2001},
-              {Name: 'Mathew', Emails: '1000', Year: 2001},
-              {Name: 'Sally', Emails: '4000', Year: 2001},
-              {Name: 'Richard', Emails: '2000', Year: 2000},
-              {Name: 'Mathew', Emails: '8000', Year: 2000},
-              {Name: 'Mathew', Emails: '5000', Year: 1999},
-              {Name: 'Sally', Emails: '3000', Year: 1999}
-          ];
-          // normalize/parse data
-          spendData.forEach(function(d) {
-              d.Emails = d.Emails.match(/\d+/)[0];
-          });
-          // set crossfilter
-          console.log(spendData);
-          var ndx = crossfilter(spendData),
-              yearDim  = ndx.dimension(function(d) {return +d.Year;}),
-              spendDim = ndx.dimension(function(d) {return Math.floor(d.Emails/10);}),
-              nameDim  = ndx.dimension(function(d) {return d.Name;}),
-              spendPerYear = yearDim.group().reduceSum(function(d) {return +d.Emails;}),
-              spendPerName = nameDim.group().reduceSum(function(d) {return +d.Emails;}),
-              spendHist    = spendDim.group().reduceCount();
+      console.log(ReadDataStudy2Count());
+      console.log(ReadDataStudyCount());
+      console.log(ReadDataQuizCompletionCount());
+      console.log(ReadDataDocumentCount());
+      function CreatePieChart(){
+        var data = ReadDataStudy2Count();
+        var text = "";
+        var width = 200;
+        var height = 200;
+        var thickness = 40;
+        var duration = 750;
+        var padding = 10;
+        var opacity = .8;
+        var opacityHover = 1;
+        var otherOpacityOnHover = .8;
+        var tooltipMargin = 13;
 
-          var colorScale = d3.scale.ordinal()
-                      .domain(["Year 1", "Year 2", "Year 3"])
-                      .range(["#fc8d59", "#998ec3", "#7fbf7b"]);
+        var radius = Math.min(width-padding, height-padding) / 2;
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
 
+        var svg = d3.select("#chart")
+        .append('svg')
+        .attr('class', 'pie')
+        .attr('width', width)
+        .attr('height', height);
+
+        var g = svg.append('g')
+        .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
+
+        var arc = d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius);
+
+        var pie = d3.pie()
+        .value(function(d) { return d.value; })
+        .sort(null);
+
+        var path = g.selectAll('path')
+          .data(pie(data))
+          .enter()
+          .append("g")  
+          .append('path')
+          .attr('d', arc)
+          .attr('fill', (d,i) => color(i))
+          .style('opacity', opacity)
+          .style('stroke', 'white')
+          .on("mouseover", function(d) {
+              d3.selectAll('path')
+                .style("opacity", otherOpacityOnHover);
+              d3.select(this) 
+                .style("opacity", opacityHover);
+
+              let g = d3.select("svg")
+                .style("cursor", "pointer")
+                .append("g")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+        
+              g.append("text")
+                .attr("class", "name-text")
+                .text(`${d.data.key} (${d.data.value})`)
+                .attr('text-anchor', 'middle');
             
-            yearRingChart
-              .width(300)
-              .height(300)
-              .dimension(yearDim)
-              .group(spendPerYear)
-              .innerRadius(50)
-              .colors(colorScale)
-              .controlsUseVisibility(true);
+              let text = g.select("text");
+              let bbox = text.node().getBBox();
+              let padding = 2;
+              g.insert("rect", "text")
+                .attr("x", bbox.x - padding)
+                .attr("y", bbox.y - padding)
+                .attr("width", bbox.width + (padding*2))
+                .attr("height", bbox.height + (padding*2))
+                .style("fill", "white")
+                .style("opacity", 0.75);
+            })
+          .on("mousemove", function(d) {
+                let mousePosition = d3.mouse(this);
+                let x = mousePosition[0] + width/2;
+                let y = mousePosition[1] + height/2 - tooltipMargin;
+            
+                let text = d3.select('.tooltip text');
+                let bbox = text.node().getBBox();
+                if(x - bbox.width/2 < 0) {
+                  x = bbox.width/2;
+                }
+                else if(width - x - bbox.width/2 < 0) {
+                  x = width - bbox.width/2;
+                }
+            
+                if(y - bbox.height/2 < 0) {
+                  y = bbox.height + tooltipMargin * 2;
+                }
+                else if(height - y - bbox.height/2 < 0) {
+                  y = height - bbox.height/2;
+                }
+            
+                d3.select('.tooltip')
+                  .style("opacity", 1)
+                  .attr('transform',`translate(${x}, ${y})`);
+            })
+          .on("mouseout", function(d) {   
+              d3.select("svg")
+                .style("cursor", "none")  
+                .select(".tooltip").remove();
+            d3.selectAll('path')
+                .style("opacity", opacity);
+            })
+          .on("touchstart", function(d) {
+              d3.select("svg")
+                .style("cursor", "none");    
+          })
+          .each(function(d, i) { this._current = i; });
+
+        let legend = d3.select("#chart").append('div')
+              .attr('class', 'legend')
+              .style('margin-top', '30px');
+
+        let keys = legend.selectAll('.key')
+              .data(data)
+              .enter().append('div')
+              .attr('class', 'key')
+              .style('display', 'flex')
+              .style('align-items', 'center')
+              .style('margin-right', '20px');
+
+            keys.append('div')
+              .attr('class', 'symbol')
+              .style('height', '10px')
+              .style('width', '10px')
+              .style('margin', '5px 5px')
+              .style('background-color', (d, i) => color(i));
+
+            keys.append('div')
+              .attr('class', 'key')
+              .text(d => `${d.key} (${d.value})`);
+
+            keys.exit().remove();
+          }
+          function CreateBarChart(){
+            var data = ReadDataQuizCompletionCount();
+            // Set the dimensions of our chart to be displayed 
+            var barsWidth = 500,
+              barsHeight = 400,
+              axisMargin = 100;
+
+            var chartHeight = barsHeight+axisMargin,
+              chartWidth = barsWidth+axisMargin;
 
 
-          var colorScale1 = d3.scale.ordinal()
-                      //.domain(["Year 1", "Year 2", "Year 3"])
-                      .range(["#99d8c9"]);
+            // Select the chart element on the page so we can reference it in code
+            // Also set the width and height attributes of the chart SVG 
+            var chart = d3.select('#chart2')
+              .attr('width', chartWidth+100)
+              .attr('height', chartHeight);
 
-              //rowChart.colors(colorScale1);
+            // Create a linear scale for our y-axis to map datapoint values to pixel heights of bars
+            var yScale = d3.scaleLinear()
+              .domain([0,d3.max(data, function(d){
+                // return the value property of each datapoint so the max function can compare
+                return d.value;
+              })])
+              .rangeRound([barsHeight, 0]);
 
-            spendHistChart
-              .dimension(spendDim)
-              .group(spendHist)
-              .x(d3.scale.linear().domain([100,1000]))
-              .xUnits(function(){return 15;})
-              .elasticY(true)
-              .colors(colorScale1)
-              .controlsUseVisibility(true);
-          spendHistChart.xAxis().tickFormat(function(d) {return d*10}); // convert back to base unit
-          spendHistChart.yAxis().ticks(2);
-
-          spenderRowChart
-              .dimension(nameDim)
-              .group(spendPerName)
-              .elasticX(true)
-              .colors(colorScale1)
-              .controlsUseVisibility(true);
-          var allDollars = ndx.groupAll().reduceSum(function(d) { return +d.Emails; });
-          table
-              .dimension(spendDim)
-              .group(function(d) {
-                  return d.value;
-              })
-              .showGroups(false)
-              .columns(['Name',
-                        {
-                            label: 'Emails',
-                            format: function(d) {
-                                return '' + d.Emails;
-                            }
-                        },
-                        'Year',
-                        {
-                            label: 'Percent of Total',
-                            format: function(d) {
-                                return Math.floor((d.Emails / allDollars.value()) * 100) + '%';
-                            }
-                        }]);
-          d3.select('#download')
-              .on('click', function() {
-                  var data = nameDim.top(Infinity);
-                  if(d3.select('#download-type input:checked').node().value==='table') {
-                      data = data.map(function(d) {
-                          var row = {};
-                          table.columns().forEach(function(c) {
-                              row[table._doColumnHeaderFormat(c)] = table._doColumnValueFormat(c, d);
-                          });
-                          return row;
-                      });
+            // Create a scale that returns the bands each bar should be in along the x-axis
+            let xScale = d3.scaleBand()
+              .domain(
+                data.map(
+                  function(d){
+                    // For each datapoint in our data array
+                    // Return the name property into our new domain array
+                    return d.key;
                   }
-                  var blob = new Blob([d3.csv.format(data)], {type: "text/csv;charset=utf-8"});
-                  saveAs(blob, 'data.csv');
-              });
-          dc.renderAll();
+                )
+              )
+              .rangeRound([0,barsWidth])
+              .padding(0.1);
 
+            // Create an SVG group that we will add the individual bar elements of our chart to
+            var bars = chart.append('g')
+              .attr('id', "bars-container");
+
+            // Bind the data to our .bars svg elements
+            // Create a rectangle for each data point and set position and dimensions using scales
+            bars.selectAll('.bar')
+              .data(data)
+              .enter().append("rect")
+                .attr('class', "bar")
+                .attr('x', function(d){
+                  return xScale(d.key);
+                })
+                .attr('y', function(d){
+                  return yScale(d.value); 
+                })
+                .attr('width', xScale.bandwidth())
+                .attr('height', function(d){return barsHeight-yScale(d.value);});
+
+            // Move the bars so that there is space on the left for the y-axis
+            bars.attr('transform', 'translate('+axisMargin+',0)');
+
+            // Create a new SVG group for the y-axis elements
+            // Generate the y-axis with 10 ticks and move into position
+            yAxis = chart.append('g')
+              .attr('id','y-axis')
+              .call(d3.axisLeft(yScale).ticks(10))
+                .attr('transform', 'translate('+axisMargin+',0)');
+
+            // Create another group for the x-axis elements
+            // Generate the x-axis using the our x scale and move into positon
+            // Select the text elements and rotate by 45 degrees
+            xAxis = chart.append('g')
+              .attr('id', 'x-axis')
+              .call(d3.axisBottom(xScale))
+              .attr('transform', 'translate('+axisMargin+','+barsHeight+')')
+              .selectAll("text")
+                .style("text-anchor",'start')
+                .attr('transform', 'rotate(45)');
+
+          }
+          CreatePieChart();
+          CreateBarChart();
 
       });
       
